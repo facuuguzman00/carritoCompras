@@ -23,9 +23,6 @@ function App() {
   return (
     <div className="App">
       <RouterProvider router={router} />
-
-      {/* <h1>Ver productos </h1> */}
-      {/* <ListadoProductos /> */}
     </div>
   );
 }

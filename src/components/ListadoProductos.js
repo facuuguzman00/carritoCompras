@@ -53,7 +53,6 @@ function ListadoProductos() {
             columns={{ xs: 4, sm: 8, md: 12 }}
             direction="row"
             justifyContent="center"
-            // alignItems="flex-start"
           >
             {productos.map((prod) => (
               <Card sx={{ maxWidth: 345 }} style={{ margin: "3%" }}>
