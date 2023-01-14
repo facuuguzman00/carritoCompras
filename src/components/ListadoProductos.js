@@ -6,28 +6,17 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import axios from "axios";
 import Button from "@mui/material/Button";
 import { Link, NavLink } from "react-router-dom";
-import { addToCart } from "../store/actions/cardActions";
+import { addToCart, getProduct } from "../store/actions/cardActions";
 
 function ListadoProductos() {
   const [productos, setProductos] = useState([]);
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const cart = state.shopping;
 
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  const getProducts = () => {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((response) => setProductos(response.data));
-    console.log(productos);
-  };
+  
 
   return (
     <div>
@@ -45,7 +34,7 @@ function ListadoProductos() {
         </div>
       </Grid>
       <hr />
-      {productos.length > 0 ? (
+      {state.product.length > 0 ? (
         <div>
           <Grid
             container
@@ -54,8 +43,8 @@ function ListadoProductos() {
             direction="row"
             justifyContent="center"
           >
-            {productos.map((prod) => (
-              <Card sx={{ maxWidth: 345 }} style={{ margin: "3%" }}>
+            {state.product.map((prod) => (
+              <Card sx={{ maxWidth: 345 }} style={{ margin: "3%" }} key={prod.id}>
                 <CardMedia
                   sx={{ height: 300 }}
                   image={prod.image}

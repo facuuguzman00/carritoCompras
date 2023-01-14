@@ -4,9 +4,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import ListadoProductos from './components/ListadoProductos';
-import { shoppingReducer, initialState } from "./store/reducer/shopCartReducer";
 import CarritoCompras from './components/CarritoCompras';
+import { getProduct } from "./store/actions/cardActions";
+
 
 const router = createBrowserRouter([
   {
@@ -19,7 +21,14 @@ const router = createBrowserRouter([
   }
 ]);
 
+
 function App() {
+  const dispatch = useDispatch();
+  
+  
+  useEffect(() => {
+    dispatch(getProduct())
+  }, []);
   return (
     <div className="App">
       <RouterProvider router={router} />
